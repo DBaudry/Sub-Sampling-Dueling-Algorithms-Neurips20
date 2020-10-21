@@ -1,16 +1,11 @@
-# SDA, Neurips 2020
+# Sub-Sampling Dueling Algorithms, Neurips 2020
 
 This repositery contains the code associated with the paper 
-"Sub-sampling for efficient Non-Parametric Bandit Exploration" presented at Neurips 2020. The present file
-propose a description of the code structure and a short guide to run some experiments.
-
-The python files can be divided in three categories: 1) Implementation of
-the arms and the bandits algorithms, 2) Helpers for this implementation, and 3) 
-Helpers to perform some experiments and analyze their results. 
+"Sub-sampling for efficient Non-Parametric Bandit Exploration" presented at Neurips 2020. We provide a description of the code structure and a short guide to run some experiments.
 
 ## How to run experiments
 
-The *__ main__.py* file contains different block with code that can be executed as it is. This file relies on *xp_helpers.py*, that contains functions that 
+The *__ main__.py* file contains different block with code that can be directly executed. This file relies on *xp_helpers.py*, that contains functions that 
 allow to run two types of experiments: 
 * Frequentist experiments: the user defines a bandit model and perform a number of runs
 of each algorithm for this particular model
@@ -25,11 +20,11 @@ The file is divided in three blocks. The __xp_type__ parameter allows to choose 
 
 Our implementation of the multi-arm bandit problem has its key structure in the *MAB.py* file. The initialization of the bandit relies on the *arms.py* file, which defines objects representing the arms and their properties (mean, how to sample the rewards, etc...). 
 
-The __GenericMAB__ object is designed as a mother class for any bandit model. Several algorithms are already implemented in this class, when they can be made not specific to some distribution. The function __MC_regret__ allows to run a single bandit algorithm for a given number of runs and time horizon and returns the regret.
+The __GenericMAB__ object is designed as a mother class for any bandit model. Several algorithms are already implemented in this class, when they don't have to be calibrated for specific distributions. The function __MC_regret__ allows to run a single bandit algorithm for a given number of runs and time horizon and returns the regret.
 
 The objects __BernoulliMAB.py__, __GaussianMAB.py__, __ExponentialMAB.py__ and __TruncatedGaussianMAB.py__
 are inherited from __GenericMAB__ and refine the class to adapt it to the Bernoulli, Gaussian, Exponential and Truncated Gaussian distributions. In particular,
-they contain the algorithms that are specific to the family of distribution of the arms, or algorithms in __GenericMAB__ that can be optimized (for instance in Bernoulli MAB). 
+they contain the algorithms that are specific to the family of distribution of the arms, or optimized versions of algorithms that are alerady in __GenericMAB__ (for instance in Bernoulli MAB). 
 
 ### Helpers 
 
